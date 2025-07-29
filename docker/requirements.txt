@@ -1,0 +1,2 @@
+# This file contains a list of python packages that are installed by pip when building the container image
+flask

@@ -1,0 +1,38 @@
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.counter-card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.counter-display {
+    font-size: 4rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.counter-display.animate {
+    transform: scale(1.05);
+}
+
+.counter-display input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    border-radius: 0.375rem;
+}
+
+.counter-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.counter-btn:hover {
+    transform: translateY(-3px);
+}
