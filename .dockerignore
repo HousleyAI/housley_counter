@@ -13,6 +13,7 @@ env/
 # Git
 .git
 .gitignore
+.github
 
 # Documentation
 README.md

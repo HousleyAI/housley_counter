@@ -2,8 +2,8 @@ from flask import Flask, render_template, jsonify
 import os
 
 app = Flask(__name__, 
-           template_folder='templates',
-           static_folder='static',
+           template_folder='src/templates',
+           static_folder='src/static',
            static_url_path='/static')
 
 @app.route('/')
