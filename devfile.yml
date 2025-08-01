@@ -7,9 +7,9 @@ metadata:                                          # Metadata about the project
 
 ### List of avaliable components/tasks that can be done ###
 components:
-  - name: housley-couter-image-build               # This component builds the container image
+  - name: housley-counter-image-build              # This component builds the container image
     image:
-      imageName: housley-couter-image:latest       # The name of the image to build
+      imageName: housley-counter-image:latest      # The name of the image to build
       dockerfile:
         uri: docker/Dockerfile                     # The path to the Dockerfile
         buildContext: .                            # The build context for the Dockerfile
@@ -30,7 +30,7 @@ components:
 commands:
   - id: build-image                                # This command builds the container image
     apply:
-      component: housley-couter-image-build
+      component: housley-counter-image-build
       
   - id: deployk8s                                  # This command deploys the application to Kubernetes
     apply:
