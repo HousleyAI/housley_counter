@@ -8,15 +8,15 @@ spec:
   replicas: 1                                     # The number of replicas to run
   selector:                                       # The selector for the pods that this Deployment manages
     matchLabels:
-      app: python-counter
+      app: housley-counter
   template:                                       # The template for the pods that this Deployment manages
     metadata:
       labels:                                     # The labels for the pods
-        app: python-counter
+        app: housley-counter
     spec:
       containers:
-        - name: python-counter-container           # The name of the container
-          image: housley-counter-image:latest              # The image to run in the container
+        - name: python-counter-container          # The name of the container
+          image: housley-counter-image:latest     # The image to run in the container
           ports:
             - name: http                          # The port that the container is listening on
               containerPort: 8080
@@ -43,7 +43,6 @@ spec:
 
 ### Service ###
 # It exposes an application running on a set of Pods as a network service
----
 kind: Service
 apiVersion: v1
 metadata:
@@ -55,12 +54,11 @@ spec:
       protocol: TCP
       targetPort: 8080                            # The port that the Service is forwarding to
   selector:                                       # The selector for the pods that this Service is forwarding to
-    app: python-counter
+    app: housley-counter
 
 
 ### Route ###
 # It exposes a service at a host name, so that external clients can reach it by name
----
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
