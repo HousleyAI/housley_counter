@@ -1,15 +1,15 @@
 schemaVersion: 2.2.2                               # This is the schema version for the devfile
 metadata:                                          # Metadata about the project
-  name: python-demo-app                            # The name of the project
+  name: Housley Counter                            # The name of the project
   attributes:
     alpha.dockerimage-port: 8080                   # The port that the application is running on
 
 
 ### List of avaliable components/tasks that can be done ###
 components:
-  - name: image-build                              # This component builds the container image
+  - name: housley-couter-image-build               # This component builds the container image
     image:
-      imageName: python-image:latest               # The name of the image to build
+      imageName: housley-couter-image:latest       # The name of the image to build
       dockerfile:
         uri: docker/Dockerfile                     # The path to the Dockerfile
         buildContext: .                            # The build context for the Dockerfile
@@ -30,7 +30,7 @@ components:
 commands:
   - id: build-image                                # This command builds the container image
     apply:
-      component: image-build
+      component: housley-couter-image-build
       
   - id: deployk8s                                  # This command deploys the application to Kubernetes
     apply:

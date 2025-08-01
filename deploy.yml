@@ -3,20 +3,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: deployment-python                         # The name of the Deployment
+  name: deployment-counter                        # The name of the Deployment
 spec:
   replicas: 1                                     # The number of replicas to run
   selector:                                       # The selector for the pods that this Deployment manages
     matchLabels:
-      app: python-app
+      app: python-couter
   template:                                       # The template for the pods that this Deployment manages
     metadata:
       labels:                                     # The labels for the pods
-        app: python-app
+        app: python-couter
     spec:
       containers:
-        - name: python-app-container              # The name of the container
-          image: python-image:latest              # The image to run in the container
+        - name: python-couter-container           # The name of the container
+          image: housley-couter-image:latest              # The image to run in the container
           ports:
             - name: http                          # The port that the container is listening on
               containerPort: 8080
@@ -29,7 +29,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: service-python                            # The name of the Service
+  name: service-counter                            # The name of the Service
 spec:
   ports:
     - name: http-8080                             # The port that the Service is listening on
@@ -37,7 +37,7 @@ spec:
       protocol: TCP
       targetPort: 8080                            # The port that the Service is forwarding to
   selector:                                       # The selector for the pods that this Service is forwarding to
-    app: python-app
+    app: python-couter
 
 
 ### Route ###
@@ -46,11 +46,11 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: route-python                              # The name of the Route
+  name: route-counter                              # The name of the Route
 spec:
   to:                                             # The service that the Route is forwarding to
     kind: Service
-    name: service-python
+    name: service-counter
     weight: 100
   port:                                           # The port that the Route is forwarding to
     targetPort: http-8080
