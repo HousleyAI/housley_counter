@@ -40,9 +40,9 @@ spec:
             timeoutSeconds: 3                     # Timeout after 3 seconds
             failureThreshold: 3                   # Mark as not ready after 3 consecutive failures
 
-
 ### Service ###
 # It exposes an application running on a set of Pods as a network service
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -59,6 +59,7 @@ spec:
 
 ### Route ###
 # It exposes a service at a host name, so that external clients can reach it by name
+---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
