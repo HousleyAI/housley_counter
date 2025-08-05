@@ -8,16 +8,74 @@ body {
     background: rgba(255, 255, 255, 0.95);
     border: none;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+.counter-display-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .counter-display {
     font-size: 4rem;
     font-weight: bold;
     transition: all 0.3s ease;
+    flex: 1;
+    max-width: 300px;
+}
+
+.counter-side-btn {
+    width: 50px;
+    height: 140px;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.counter-side-btn:hover {
+    transform: scale(1.05);
 }
 
 .counter-display.animate {
     transform: scale(1.05);
+}
+
+.counter-display.flash {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fab1a0) !important;
+    animation: flash-colors 0.5s ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes flash-colors {
+    0% { 
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+        transform: scale(1.0);
+    }
+    25% { 
+        background: linear-gradient(45deg, #6bcf7f, #4ecdc4);
+        transform: scale(1.05);
+    }
+    50% { 
+        background: linear-gradient(45deg, #45b7d1, #96ceb4);
+        transform: scale(1.1);
+    }
+    75% { 
+        background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+        transform: scale(1.05);
+    }
+    100% { 
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+        transform: scale(1.0);
+    }
 }
 
 .counter-display input:focus {
@@ -25,14 +83,117 @@ body {
     border-radius: 0.375rem;
 }
 
-.counter-btn {
-    width: 70px;
-    height: 70px;
-    font-size: 2rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
+.timer-controls {
+    padding: 20px 0;
 }
 
-.counter-btn:hover {
-    transform: translateY(-3px);
+.timer-btn {
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Make all main control buttons the same height */
+.timer-controls .btn-lg {
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timer-controls .btn-lg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.timer-status {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+}
+
+#celebration-container {
+    pointer-events: none;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f0f;
+    animation: confetti-fall linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.celebration-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ff6b6b;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: celebration-bounce 1s ease-in-out infinite alternate;
+    z-index: 5;
+}
+
+@keyframes celebration-bounce {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Pulse animation for timer running */
+.timer-running .counter-display {
+    animation: timer-pulse 1s infinite;
+}
+
+@keyframes timer-pulse {
+    0% { 
+        border-color: #0d6efd;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    }
+    50% { 
+        border-color: #ff6b6b;
+        box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+    }
+    100% { 
+        border-color: #0d6efd;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    }
 }
